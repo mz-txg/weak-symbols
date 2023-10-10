@@ -12,12 +12,21 @@
 // License for the specific language governing permissions and limitations under
 // the License.
 #include <stdio.h>
+#include <stdint.h>
 
 #include "weak.h"
 
 void x_func() {
   printf("Calling A\n");
   A();
+
+  printf("Querying a variable\n");
+
+  printf("Variable address is %0lx\n", (intptr_t)(&variable));
+  printf("Variable is %s\n", variable==42? "strong": variable==100? "weak":"undefined");
+
+  printf("Calling a callback ...\n");
+  Caller();
 }
 
 int main(void) { x_func(); }
